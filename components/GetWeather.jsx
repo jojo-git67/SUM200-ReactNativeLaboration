@@ -8,7 +8,7 @@ const GetWeather = () => {
 
     const getWeather = async () => {
         const response = await fetch(
-            "http://www.7timer.info/bin/api.pl?lon=113.17&lat=23.09&product=civillight&output=json"
+            "http://www.7timer.info/bin/api.pl?lon=12.2886&lat=58.2837&product=civillight&output=json"
         );
 
         const json = await response.json();
@@ -25,77 +25,80 @@ const GetWeather = () => {
     }
 
     return (
-        <View style={styles.container}>
+    <View style={styles.container}>
+        <View style={styles.card}>
 
-            <View style={styles.card}>
+            <Text style={styles.header}>
+                Today's weather
+            </Text>
 
-                <Text style={styles.date}>
-                    {translateDate(data.date)}
-                </Text>
+            <Text style={styles.date}>
+                {translateDate(data.date)}
+            </Text>
 
-                <Text style={styles.emoji}>
-                    {getWeatherEmoji(data.weather)}
-                </Text>
+            <Text style={styles.emoji}>
+                {getWeatherEmoji(data.weather)}
+            </Text>
 
-                <Text style={styles.weather}>
-                    {translateWeather(data.weather)}
-                </Text>
+            <Text style={styles.weather}>
+                {translateWeather(data.weather)}
+            </Text>
 
-                <Text style={styles.temperatureRange}>
-                    {data.temp2m.min}°C / {data.temp2m.max}°C
-                </Text>
+            <Text style={styles.temperatureRange}>
+                Min: {data.temp2m.min}°C / Max: {data.temp2m.max}°C
+            </Text>
 
-                <Text style={styles.wind}>
-                    Wind condition: {translateWind(data.wind10m_max)}
-                </Text>
-
-            </View>
+            <Text style={styles.wind}>
+                Wind condition: {translateWind(data.wind10m_max)}
+            </Text>
 
         </View>
-    );
+    </View>
+);
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 20,
+        padding: 10,
     },
 
     card: {
         width: "100%",
-        padding: 25,
-        borderRadius: 20,
+        padding: 30,
+        borderRadius: 25,
         backgroundColor: "#E8F0F2",
         alignItems: "center",
     },
 
-    date: {
-        fontSize: 20,
+    header: {
+        fontSize: 36,
         fontWeight: "600",
-        marginBottom: 20,
+        marginBottom: 5,
+    },
+
+    date: {
+        fontSize: 16,
+        marginBottom: 15,
     },
 
     emoji: {
-        fontSize: 70,
-        marginBottom: 10,
+        fontSize: 90,
+        marginBottom: 15,
     },
 
     weather: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: "600",
-        marginBottom: 20,
+        marginBottom: 25,
     },
 
     temperatureRange: {
         fontSize: 18,
-        marginTop: 5,
-        marginBottom: 25,
+        marginBottom: 30,
     },
 
     wind: {
-        fontSize: 16,
+        fontSize: 18,
     },
 });
 
