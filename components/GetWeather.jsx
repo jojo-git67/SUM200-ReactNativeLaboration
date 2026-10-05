@@ -1,24 +1,50 @@
 import { useState, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
+import * as Location from "expo-location";
 import { translateWeather, getWeatherEmoji, translateWind } from "../utils/weatherTranslation";
 import translateDate from "../utils/translateDate";
 
 const GetWeather = () => {
     const [data, setData] = useState(null);
-
-    const getWeather = async () => {
-        const response = await fetch(
-            "http://www.7timer.info/bin/api.pl?lon=12.2886&lat=58.2837&product=civillight&output=json"
-        );
-
-        const json = await response.json();
-
-        setData(json.dataseries[0]);
-    };
+    const [gpsPermission, setGpsPermission] = useState(null);
 
     useEffect(() => {
-        getWeather();
+        const loadWeather = async () =>{
+            try {
+                const { status } = await Location.requestForegroundPermissionsAsync();
+
+                if (status != "granted"){
+                    console.log("GPS permission was denied");
+                    setGpsPermission(false);
+                    return;
+                }
+
+                setGpsPermission(true);
+
+                const location = await Location.getCurrentPositionAsync({});
+
+                const response = await fetch(
+                    "https://7timer.info/bin/api.pl?lon=" + location.coords.longitude + "&lat=" + location.coords.latitude + "&product=civillight&output=json"
+                );
+
+                const json = await response.json();
+
+                setData(json.dataseries[0]);
+
+            } catch(error){
+                console.log("Error loading the weather", error);
+            } 
+        }    
+        loadWeather();    
     }, []);
+
+    if (gpsPermission === null){
+        return <Text>Checking GPS permission...</Text>
+    }
+
+    if (gpsPermission === false){
+        return <Text>GPS permission is required to get the local weather</Text>
+    }
 
     if (!data) {
         return <Text>Loading information...</Text>;

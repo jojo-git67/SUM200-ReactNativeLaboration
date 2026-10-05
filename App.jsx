@@ -1,25 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import GetWeather from './components/GetWeather';
 
+import * as Location from "expo-location";
+
+
 export default function App() {
-  return (
-    <SafeAreaProvider style={styles.container}>
-      <SafeAreaView>
-        <View>
-          <StatusBar style="auto" />
-          < GetWeather />
-        </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
-  );
+    return (
+        <SafeAreaProvider>
+            <SafeAreaView style={styles.container}>
+                <StatusBar style="auto" />
+                <GetWeather />
+                <StatusBar style="auto" />
+            </SafeAreaView>
+        </SafeAreaProvider>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: '#fff',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
 });
