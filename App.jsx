@@ -3,8 +3,6 @@ import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import GetWeather from './components/GetWeather';
 
-import * as Location from "expo-location";
-
 
 export default function App() {
     return (
