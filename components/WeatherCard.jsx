@@ -25,6 +25,8 @@ export default function WeatherCard( { selectedLocation } ) {
     const getGPSLocation = async () => {
         const location = await Location.getCurrentPositionAsync({});
 
+        console.log("Longitude: " + location.coords.longitude + " Latitude: " + location.coords.latitude);
+
         return {
             latitude: location.coords.latitude,
             longitude: location.coords.longitude
@@ -66,8 +68,8 @@ export default function WeatherCard( { selectedLocation } ) {
                 if (!hasPermission) {
                     return;
                 }
-
-                const location = await getGPSLocation();
+                
+                const location = await getGPSLocation(); 
 
                 await getWeatherData(location.longitude, location.latitude);
             }
