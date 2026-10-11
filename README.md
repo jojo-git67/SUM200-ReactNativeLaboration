@@ -44,7 +44,7 @@ This solution was implemented with help from AI while learning how to share stat
 
 | Location | Latitude | Longitude |
 |----------|----------|-----------|
-| Trollhättan | 58.2837 | 12.2886 |
+| Trollhättan | 58.2837 | 12.28861 |
 | Gothenburg | 57.7089 | 11.9746 |
 | Stockholm | 59.3293 | 18.0686 |
 | Malmö | 55.6050 | 13.0038 |
@@ -56,7 +56,7 @@ When GPS is selected, the application requests permission to access the device's
 
 If permission is granted, the latitude and longitude are retrieved and used in the API request.
 
-Additional predefined locations can be added to the location data used by the `LocationPicker` component.
+Additional predefined locations can be added to the location data used by the `LocationPicker` component by adding them to the `LOCATIONS` in [data/locations.js](https://github.com/jojo-git67/SUM200-ReactNativeLaboration/blob/main/data/locations.js)
 
 ## API
 
