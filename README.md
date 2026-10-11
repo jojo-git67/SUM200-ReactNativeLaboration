@@ -114,12 +114,15 @@ Start the Expo development server:
 npx expo start
 ```
 
-The application can then be run on an Android emulator, iOS simulator (macOS), or a physical device using a compatible Expo development environment.
+The application can then be launched using:
 
-For GPS functionality, location permission must be granted.
+- **Android:** Press `a` to open the application in an Android emulator.
+- **iOS:** Press `i` to open the application in an iOS simulator (requires macOS and Xcode).
+- **Physical device:** Scan the QR code using a compatible Expo Go app.
 
-When using an emulator or simulator, a simulated GPS location may need to be configured.
+An Android emulator or iOS simulator must be installed and configured before launching the application.
 
+For GPS functionality, location permission must be granted. When using an emulator or simulator, a simulated location may need to be configured.
 ## AUTHOR
 
 Joakim Johansson
